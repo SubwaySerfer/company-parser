@@ -1,7 +1,13 @@
 from pymongo import MongoClient
 from .models import Company
+import os
+from dotenv import load_dotenv
 
-client = MongoClient("mongodb://localhost:27017/")
+load_dotenv()
+
+connection_string = os.getenv("MONGO_DB")
+
+client = MongoClient(connection_string)
 db = client["company_parser"]
 companies_collection = db["companies"]
 
